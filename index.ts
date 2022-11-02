@@ -31,7 +31,6 @@ async function startApp() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as ConnectOptions);
-    console.log("SERVER START PORT");
   } catch (e) {
     console.log(e);
   }
