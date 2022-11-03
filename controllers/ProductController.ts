@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import ProductService from "../ProductService";
+import ProductService from "../service/ProductService";
 
 class ProductController {
   // eslint-disable-next-line class-methods-use-this

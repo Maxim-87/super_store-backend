@@ -1,5 +1,5 @@
-import fileService from "./fileService";
-import Product from "./models/Product";
+import fileService from "../fileService";
+import Product from "../models/Product";
 
 class ProductService {
   // eslint-disable-next-line class-methods-use-this
