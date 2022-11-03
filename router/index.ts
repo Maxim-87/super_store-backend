@@ -8,11 +8,11 @@ import ProductController from "../controllers/ProductController";
 const router = new Router();
 
 router.get("/registration", AuthController.registration);
-router.post("/login", AuthController.login);
-router.post("/logout", AuthController.logout);
-router.post("/activate/:link", AuthController.activate);
-router.post("/refresh", AuthController.refresh);
-router.post("/users", ProductController.create);
+router.get("/login", AuthController.login);
+router.get("/logout", AuthController.logout);
+router.get("/activate/:link", AuthController.activate);
+router.get("/refresh", AuthController.refresh);
+router.get("/users", ProductController.create);
 
 router.post("/products", ProductController.create);
 router.get("/products", ProductController.getAll);

@@ -20,7 +20,7 @@ class AuthController {
       // const product = await ProductService.create(req.body, req.files.image);
 
       // const product = await ProductService.create(req.body);
-      // res.json(product);
+      res.json({ name: "login" });
     } catch (e) {
       // eslint-disable-next-line no-magic-numbers
       res.status(500).json(e);
