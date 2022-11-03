@@ -1,6 +1,7 @@
 /* eslint-disable */
 import bcrypt from "bcrypt";
-import uuid from "uuid";
+// import uuid from "uuid";
+import {v4 as uuidv4} from 'uuid';
 
 import UserModel from "../models/userModel";
 import emailService from "../service/EmailService";
@@ -18,10 +19,10 @@ class AuthService {
 
     // eslint-disable-next-line no-magic-numbers
     const hashPassword = await bcrypt.hash(password, 3); // hash password
-    const activationLink = uuid.v4(); // create random link
+    const activationLink = uuidv4(); // create random link
     const user = await UserModel.create({
       email,
-      hashPassword,
+      password: hashPassword,
       activationLink,
     }); // create user and save in dataBase
     await emailService.sendActivationEmail(email, activationLink) // send email to user

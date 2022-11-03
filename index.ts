@@ -11,13 +11,13 @@ const DB_URL = `mongodb+srv://ma:Mongodb_2022@cluster0.duzhxff.mongodb.net/?retr
 
 export const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST", "DELETE"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//     methods: ["GET", "POST", "DELETE"],
+//   })
+// );
 
 app.use(cookieParser());
 app.use(express.json());

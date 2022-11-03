@@ -7,7 +7,7 @@ import ProductController from "../controllers/ProductController";
 // @ts-ignore
 const router = new Router();
 
-router.get("/registration", AuthController.registration);
+router.post("/registration", AuthController.registration);
 router.get("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
 router.get("/activate/:link", AuthController.activate);
