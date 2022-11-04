@@ -7,6 +7,7 @@ import UserModel from "../models/userModel";
 import emailService from "../service/EmailService";
 import tokenService from "../service/TokenService";
 import UserDto from "../dtos/userDto";
+import ApiError from "../exceptions/api-error";
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
@@ -14,7 +15,7 @@ class AuthService {
     const candidate = await UserModel.findOne({email}); // check user in dataBase
 
     if (candidate) {
-      throw new Error(`Users already ${email}`);
+      throw ApiError.BadRequest(`Users already ${email}`);
     }
 
     // eslint-disable-next-line no-magic-numbers
@@ -39,11 +40,22 @@ class AuthService {
   async activate(activationLink: any) {
     const user = await UserModel.findOne({activationLink});
     if (!user) {
-      throw new Error("Not correct link");
+      // @ts-ignore
+      throw new ApiError.BadRequest("Not correct link");
     }
     user.isActivated = true;
     await user.save();
   }
+
+  async login(email: string, password: string) {
+
+    const user = await UserModel.findOne({email}) // find user for password
+
+    if (!user) {
+      throw ApiError.UnauthorizedError(`User c email ${email} not found`) //error if user not found
+    }
 }
+}
+
 
 export default new AuthService();

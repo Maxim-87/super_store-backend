@@ -1,4 +1,5 @@
 import Router from "express";
+import { body } from "express-validator";
 
 import AuthController from "../controllers/AuthController";
 import ProductController from "../controllers/ProductController";
@@ -7,7 +8,12 @@ import ProductController from "../controllers/ProductController";
 // @ts-ignore
 const router = new Router();
 
-router.post("/registration", AuthController.registration);
+router.post(
+  "/registration",
+  body("email").isEmail(), // check email
+  body("password").isLength({ min: 3, max: 32 }), // check password length
+  AuthController.registration
+);
 router.get("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
 router.get("/activate/:link", AuthController.activate);

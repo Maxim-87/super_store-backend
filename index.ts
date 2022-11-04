@@ -1,10 +1,11 @@
 import cookieParser from "cookie-parser";
-// import cors from "cors";
+import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import fileUpload from "express-fileupload";
 import mongoose, { ConnectOptions } from "mongoose";
 
+import errorMiddlewares from "./middleware/error-middlewares";
 import router from "./router";
 
 // eslint-disable-next-line no-magic-numbers
@@ -13,19 +14,20 @@ const DB_URL = `mongodb+srv://ma:Mongodb_2022@cluster0.duzhxff.mongodb.net/?retr
 
 export const app = express();
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//     methods: ["GET", "POST", "DELETE"],
-//   })
-// );
-
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "DELETE"],
+  })
+);
+// block with connect middlewares
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("static"));
 app.use(fileUpload({}));
 app.use("/api", router);
+app.use(errorMiddlewares); // connect error to end
 
 async function startApp() {
   try {
