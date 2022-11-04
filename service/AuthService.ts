@@ -35,6 +35,15 @@ class AuthService {
       user: userDto,
     }
   }
+
+  async activate(activationLink: any) {
+    const user = await UserModel.findOne({activationLink});
+    if (!user) {
+      throw new Error("Not correct link");
+    }
+    user.isActivated = true;
+    await user.save();
+  }
 }
 
 export default new AuthService();

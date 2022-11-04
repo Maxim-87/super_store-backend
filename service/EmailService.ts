@@ -9,7 +9,8 @@ class EmailService {
       secure: false,
       auth: {
         user: "maxbackend22@gmail.com",
-        pass: "backend_2022",
+        // pass: "rrgemuogjiftjaps",
+        pass: "kdccomlcszisohlb",
       },
     });
   }
@@ -23,8 +24,9 @@ class EmailService {
       text: "",
       html: `<div>
                 <h1>
-                    For activation go to <a href="${link}">${link}</a>
+                    For activation go to 
                 </h1>
+                <a href="${link}">${link}</a>
             </div>`,
     });
   }

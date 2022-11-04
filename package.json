@@ -13,6 +13,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
     "@types/express-fileupload": "^1.4.1",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/mongoose": "^5.11.97",

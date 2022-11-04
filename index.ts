@@ -1,11 +1,13 @@
 import cookieParser from "cookie-parser";
-import cors from "cors";
+// import cors from "cors";
+import "dotenv/config";
 import express from "express";
 import fileUpload from "express-fileupload";
 import mongoose, { ConnectOptions } from "mongoose";
 
 import router from "./router";
 
+// eslint-disable-next-line no-magic-numbers
 const PORT = 4000;
 const DB_URL = `mongodb+srv://ma:Mongodb_2022@cluster0.duzhxff.mongodb.net/?retryWrites=true&w=majority`;
 
