@@ -1,5 +1,33 @@
+import nodemailer from "nodemailer";
+
 class EmailService {
-  async sendActivationEmail(to: any, link: any) {}
+  constructor() {
+    // @ts-ignore
+    this.transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "maxbackend22@gmail.com",
+        pass: "backend_2022",
+      },
+    });
+  }
+
+  async sendActivationEmail(to: any, link: any) {
+    // @ts-ignore
+    await this.transporter.sendMail({
+      from: "maxbackend22@gmail.com",
+      to,
+      subject: "Activate you profile in http://localhost:4000/",
+      text: "",
+      html: `<div>
+                <h1>
+                    For activation go to <a href="${link}">${link}</a>
+                </h1>
+            </div>`,
+    });
+  }
 }
 
 export default new EmailService();

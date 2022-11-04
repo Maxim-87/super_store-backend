@@ -25,7 +25,7 @@ class AuthService {
       password: hashPassword,
       activationLink,
     }); // create user and save in dataBase
-    await emailService.sendActivationEmail(email, activationLink) // send email to user
+    await emailService.sendActivationEmail(email, `http://localhost:4000/api/activate/${activationLink}`) // send email to user
     const userDto = new UserDto(user) // send data for token
     const tokens = tokenService.generateTokens({...userDto}); // save tokens in one object
     await tokenService.saveToken(userDto.id, tokens.refreshToken);  // save in dataBase token
