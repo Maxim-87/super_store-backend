@@ -54,6 +54,7 @@ class AuthService {
     if (!user) {
       throw ApiError.UnauthorizedError(`User c email ${email} not found`) //error if user not found
     }
+
 }
 }
 
