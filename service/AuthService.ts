@@ -68,12 +68,34 @@ class AuthService {
       ...tokens,
       user: userDto,
     }
-}
+  }
 
-async logout(refreshToken: string) {
+  async logout(refreshToken: string) {
     const token = await tokenService.removeToken(refreshToken);
     return token;
-}
+  }
+
+  async refresh(refreshToken: string) {
+    if(!refreshToken) {
+      throw ApiError.UnauthorizedError();
+    }
+    const userData = tokenService.validateRefreshToken(refreshToken);
+    const tokenFromDb = tokenService.findToken(refreshToken);
+    if(!userData || !tokenFromDb) {
+      throw ApiError.UnauthorizedError();
+    }
+
+    // @ts-ignore
+    const user = await UserModel.findById(userData.id) // find user for email
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({...userDto}); // save tokens in one object
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);  // save in dataBase token
+
+    return {
+      ...tokens,
+      user: userDto,
+    }
+  }
 
 }
 

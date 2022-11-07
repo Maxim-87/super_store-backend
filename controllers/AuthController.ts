@@ -16,7 +16,7 @@ class AuthController {
         return next(ApiError.BadRequest("Validation error", errors.array()));
       }
       const { email, password } = req.body;
-      const userData = await authService.registration(email, password);
+      const userData = await authService.registration(email, password); // write data in dataBase and get token;
 
       res.cookie("refreshToken", userData.refreshToken, {
         maxAge: day30,
@@ -64,11 +64,15 @@ class AuthController {
   // eslint-disable-next-line class-methods-use-this
   async refresh(req: any, res: any, next: any) {
     try {
-      console.log("req.body = ", req.body);
-      // const product = await ProductService.create(req.body, req.files.image);
+      const { refreshToken } = req.cookies;
+      const userData = await authService.refresh(refreshToken); // write data in dataBase and get token;
 
-      // const product = await ProductService.create(req.body);
-      // res.json(product);
+      res.cookie("refreshToken", userData.refreshToken, {
+        maxAge: day30,
+        httpOnly: true,
+      });
+
+      return res.json(userData);
     } catch (e) {
       next(e);
     }

@@ -9,7 +9,7 @@ export default class ApiError extends Error {
     this.errors = errors;
   }
 
-  static UnauthorizedError(errors: any) {
+  static UnauthorizedError(errors?: any) {
     // eslint-disable-next-line no-magic-numbers
     return new ApiError(401, "User not authorization", errors);
   }

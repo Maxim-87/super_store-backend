@@ -19,6 +19,26 @@ class TokenService {
     };
   }
 
+  validateAccessToken(token: string) {
+    try {
+      const userData = jwt.verify(token, "jwt_secret_key"); // check token
+
+      return userData;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  validateRefreshToken(token: string) {
+    try {
+      const userData = jwt.verify(token, "jwt_refresh_key"); // check token
+
+      return userData;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // eslint-disable-next-line class-methods-use-this
   async saveToken(userId: any, refreshToken: any) {
     const tokenData = await tokenModel.findOne({ user: userId }); // find in DataBase user
@@ -37,6 +57,13 @@ class TokenService {
   // eslint-disable-next-line class-methods-use-this
   async removeToken(refreshToken: string) {
     const tokenData = await tokenModel.deleteOne({ refreshToken });
+
+    return tokenData;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async findToken(refreshToken: string) {
+    const tokenData = await tokenModel.findOne({ refreshToken });
 
     return tokenData;
   }
