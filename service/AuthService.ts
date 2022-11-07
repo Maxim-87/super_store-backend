@@ -49,10 +49,24 @@ class AuthService {
 
   async login(email: string, password: string) {
 
-    const user = await UserModel.findOne({email}) // find user for password
+    const user = await UserModel.findOne({email}) // find user for email
 
     if (!user) {
-      throw ApiError.UnauthorizedError(`User c email ${email} not found`) //error if user not found
+      throw ApiError.BadRequest(`User c email ${email} not found`) //error if user not found
+    }
+
+    const isPassEquals = await bcrypt.compare(password, user.password); // do rehash password, and compare passwords
+    if (!isPassEquals) {
+      throw ApiError.BadRequest('Invalid password');
+    }
+
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({...userDto}); // save tokens in one object
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);  // save in dataBase token
+
+    return {
+      ...tokens,
+      user: userDto,
     }
 
 }
