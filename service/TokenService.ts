@@ -33,6 +33,13 @@ class TokenService {
 
     return token;
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  async removeToken(refreshToken: string) {
+    const tokenData = await tokenModel.deleteOne({ refreshToken });
+
+    return tokenData;
+  }
 }
 
 export default new TokenService();

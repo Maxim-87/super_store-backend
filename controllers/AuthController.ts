@@ -50,8 +50,12 @@ class AuthController {
   // eslint-disable-next-line class-methods-use-this
   async logout(req: any, res: any, next: any) {
     try {
-      const { refreshToken } = req.cookies;
-      const toker = await authService.logout(refreshToken);
+      const { refreshToken } = req.cookies; // get cookies
+      const token = await authService.logout(refreshToken); // delete refreshToken
+
+      res.clearCookie("refreshToken", token); // clear cookie
+
+      return res.json(token);
     } catch (e) {
       next(e);
     }

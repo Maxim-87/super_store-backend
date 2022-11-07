@@ -68,8 +68,13 @@ class AuthService {
       ...tokens,
       user: userDto,
     }
-
 }
+
+async logout(refreshToken: string) {
+    const token = await tokenService.removeToken(refreshToken);
+    return token;
+}
+
 }
 
 
