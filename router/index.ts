@@ -14,8 +14,8 @@ router.post(
   body("password").isLength({ min: 3, max: 32 }), // check password length
   AuthController.registration
 );
-router.get("/login", AuthController.login);
-router.get("/logout", AuthController.logout);
+router.post("/login", AuthController.login);
+router.post("/logout", AuthController.logout);
 router.get("/activate/:link", AuthController.activate);
 router.get("/refresh", AuthController.refresh);
 router.get("/users", ProductController.create);
