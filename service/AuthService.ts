@@ -8,6 +8,7 @@ import emailService from "../service/EmailService";
 import tokenService from "../service/TokenService";
 import UserDto from "../dtos/userDto";
 import ApiError from "../exceptions/api-error";
+import User from "../models/userModel";
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
@@ -95,6 +96,11 @@ class AuthService {
       ...tokens,
       user: userDto,
     }
+  }
+
+  async getAllUsers() {
+    const users = await UserModel.find();
+    return users;
   }
 
 }

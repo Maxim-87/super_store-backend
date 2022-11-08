@@ -90,6 +90,17 @@ class AuthController {
       next(e);
     }
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  async getUsers(req: any, res: any, next: any) {
+    try {
+      const users = await authService.getAllUsers();
+
+      return res.json(users);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export default new AuthController();
