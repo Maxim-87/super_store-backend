@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "nodemon ./index.ts",
-    "run": "yarn run dev"
+    "run": "yarn run dev",
+    "build": "tsc"
   },
   "dependencies": {
     "@babel/preset-env": "^7.19.4",

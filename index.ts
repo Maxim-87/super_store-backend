@@ -9,7 +9,7 @@ import errorMiddlewares from "./middleware/error-middlewares";
 import router from "./router";
 
 // eslint-disable-next-line no-magic-numbers
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const DB_URL = `mongodb+srv://ma:Mongodb_2022@cluster0.duzhxff.mongodb.net/?retryWrites=true&w=majority`;
 
 export const app = express();

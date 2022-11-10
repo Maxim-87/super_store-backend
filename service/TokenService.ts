@@ -6,12 +6,12 @@ class TokenService {
   // eslint-disable-next-line class-methods-use-this
   generateTokens(payload: any) {
     const accessToken = jwt.sign(payload, "jwt_secret_key", {
-      expiresIn: "30m",
-    });
+      expiresIn: "30s",
+    }); // generate token
 
     const refreshToken = jwt.sign(payload, "jwt_refresh_key", {
       expiresIn: "30d",
-    });
+    }); // generate token
 
     return {
       accessToken,
@@ -19,6 +19,7 @@ class TokenService {
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   validateAccessToken(token: string) {
     try {
       const userData = jwt.verify(token, "jwt_secret_key"); // check token
@@ -29,6 +30,7 @@ class TokenService {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   validateRefreshToken(token: string) {
     try {
       const userData = jwt.verify(token, "jwt_refresh_key"); // check token
