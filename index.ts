@@ -6,7 +6,9 @@ import fileUpload from "express-fileupload";
 import mongoose, { ConnectOptions } from "mongoose";
 
 import errorMiddlewares from "./middleware/error-middlewares";
-import router from "./router";
+import authRouter from "./routes/auth-router";
+import productsRouter from "./routes/products-router";
+import usersRouter from "./routes/users-router";
 
 // eslint-disable-next-line no-magic-numbers
 const PORT = process.env.PORT || 4000;
@@ -26,7 +28,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("static"));
 app.use(fileUpload({}));
-app.use("/api", router);
+app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/products", productsRouter);
 app.use(errorMiddlewares); // connect error to end
 
 async function startApp() {
