@@ -9,7 +9,6 @@ class EmailService {
       secure: false,
       auth: {
         user: "maxbackend22@gmail.com",
-        // pass: "rrgemuogjiftjaps",
         pass: "kdccomlcszisohlb",
       },
     });
