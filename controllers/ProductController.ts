@@ -22,8 +22,6 @@ class ProductController {
     try {
       const products = await ProductService.getAll();
 
-      console.log(products);
-
       return res.json(products);
     } catch (e) {
       // eslint-disable-next-line no-magic-numbers
@@ -35,8 +33,6 @@ class ProductController {
   async getOne(req: any, res: any) {
     try {
       const product = await ProductService.getOne(req.params.id);
-
-      console.log(product);
 
       return res.json(product);
     } catch (e) {
