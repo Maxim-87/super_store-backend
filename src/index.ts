@@ -5,10 +5,10 @@ import express from "express";
 import fileUpload from "express-fileupload";
 import mongoose, { ConnectOptions } from "mongoose";
 
-import errorMiddlewares from "./middleware/error-middlewares";
-import authRouter from "./routes/auth-router";
-import productsRouter from "./routes/products-router";
-import usersRouter from "./routes/users-router";
+import errorMiddlewares from "../middleware/error-middlewares";
+import authRouter from "../routes/auth-router";
+import productsRouter from "../routes/products-router";
+import usersRouter from "../routes/users-router";
 
 // eslint-disable-next-line no-magic-numbers
 const PORT = process.env.PORT || 4000;
@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
-    methods: ["GET", "POST", "DELETE"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
   })
 );
 // block with connect middlewares
@@ -38,7 +38,7 @@ async function startApp() {
     await mongoose.connect(DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    } as ConnectOptions);
+    } as ConnectOptions); // connect dataBase
   } catch (e) {
     console.log(e);
   }
