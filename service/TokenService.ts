@@ -6,7 +6,7 @@ class TokenService {
   // eslint-disable-next-line class-methods-use-this
   generateTokens(payload: any) {
     const accessToken = jwt.sign(payload, "jwt_secret_key", {
-      expiresIn: "30s",
+      expiresIn: "30d",
     }); // generate token
 
     const refreshToken = jwt.sign(payload, "jwt_refresh_key", {
