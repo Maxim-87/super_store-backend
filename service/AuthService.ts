@@ -1,6 +1,5 @@
 /* eslint-disable */
 import bcrypt from "bcrypt";
-// import uuid from "uuid";
 import {v4 as uuidv4} from 'uuid';
 
 import UserModel from "../models/userModel";
@@ -8,7 +7,6 @@ import emailService from "../service/EmailService";
 import tokenService from "../service/TokenService";
 import UserDto from "../dtos/userDto";
 import ApiError from "../exceptions/api-error";
-import User from "../models/userModel";
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
